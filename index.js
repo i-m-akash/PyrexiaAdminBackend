@@ -11,6 +11,10 @@ const sendEmail = require("./utils/sendEmail");
 const fs = require('fs');
 const PDFDocument = require('pdfkit');
 require('./db/conn');
+
+
+const PORT = process.env.PORT || 8080;
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 // Create app
 const app = express();
 app.use(express.json());
@@ -762,5 +766,7 @@ app.get('/api/events/filter', async (req, res) => {
     res.json(filteredEvents);
 });
 
-// Server start
-app.listen(5000, () => console.log('Server running on port 5000'));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`)
+})
