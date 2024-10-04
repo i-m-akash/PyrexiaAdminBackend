@@ -14,7 +14,12 @@ require('./db/conn');
 // Create app
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: `${BASE_URL}`,
+  methods: "GET,POST,PUT,DELETE",
+
+}));
+
 
 function generateBasicPDF(userData) {
   const doc = new PDFDocument();
