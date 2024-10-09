@@ -21,6 +21,10 @@ const registrationSchema = new mongoose.Schema({
       type: String,
     
   },
+  ticketGiven: {
+    type: Boolean, 
+    default: false,
+  },
 });
 
 const EventRegistration = mongoose.model('EventRegistration', registrationSchema);
