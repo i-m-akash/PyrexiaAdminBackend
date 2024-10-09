@@ -732,6 +732,78 @@ app.post('/update-basic', async (req, res) => {
 });
 
 
+app.post('/eventTickets', async (req, res) => {
+  const { id } = req.body; // Extract id from the request body
+  console.log(id);
+  
+  try {
+      // Find the event registration by ID
+      const updatedRegistration = await EventRegistration.findById(id);
+      
+      if (!updatedRegistration) {
+          return res.status(404).json({ message: 'Event registration not found' });
+      }
+      
+      // Update the ticketGiven status
+      updatedRegistration.ticketGiven = true;
+      await updatedRegistration.save();  // Save the updated document
+
+      console.log(updatedRegistration);
+      res.json(updatedRegistration);
+  } catch (error) {
+      console.error('Error updating ticket status:', error);
+      res.status(500).json({ message: 'Error updating ticket status' });
+  }
+});
+
+app.post('/membershipcardTickets', async (req, res) => {
+  const { id } = req.body; // Extract id from the request body
+  console.log(id);
+  
+  try {
+      // Find the event registration by ID
+      const updatedRegistration = await MembershipCard.findById(id);
+      
+      if (!updatedRegistration) {
+          return res.status(404).json({ message: 'Membership Card registration not found' });
+      }
+      
+      // Update the ticketGiven status
+      updatedRegistration.ticketGiven = true;
+      await updatedRegistration.save();  // Save the updated document
+
+      console.log(updatedRegistration);
+      res.json(updatedRegistration);
+  } catch (error) {
+      console.error('Error updating ticket status:', error);
+      res.status(500).json({ message: 'Error updating ticket status' });
+  }
+});
+
+app.post('/basicTickets', async (req, res) => {
+  const { id } = req.body; // Extract id from the request body
+  console.log(id);
+  
+  try {
+      // Find the event registration by ID
+      const updatedRegistration = await BasicRegistration.findById(id);
+      
+      if (!updatedRegistration) {
+          return res.status(404).json({ message: 'Basic registration not found' });
+      }
+      
+      // Update the ticketGiven status
+      updatedRegistration.ticketGiven = true;
+      await updatedRegistration.save();  // Save the updated document
+
+      console.log(updatedRegistration);
+      res.json(updatedRegistration);
+  } catch (error) {
+      console.error('Error updating ticket status:', error);
+      res.status(500).json({ message: 'Error updating ticket status' });
+  }
+});
+
 
 // Routes for fetching data
 app.get('/admin/registrations', async (req, res) => {
